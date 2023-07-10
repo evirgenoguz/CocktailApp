@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CocktailApp</string>
+    <string name="not_connected_try_again">Not connected try again</string>
+    <string name="general_error_message">Error!</string>
+    <string name="cocktail">Cocktail</string>
+    <string name="favorites">Favorites</string>
+</resources>

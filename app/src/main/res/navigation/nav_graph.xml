@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/cocktailFragment">
+
+    <fragment
+        android:id="@+id/cocktailFragment"
+        android:name="com.evirgenoguz.cocktailapp.ui.feature.cocktail.CocktailFragment"
+        android:label="fragment_cocktail"
+        tools:layout="@layout/fragment_cocktail" >
+        <action
+            android:id="@+id/action_cocktailFragment_to_cocktailDetailFragment"
+            app:destination="@id/cocktailDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.evirgenoguz.cocktailapp.ui.feature.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/cocktailDetailFragment"
+        android:name="com.evirgenoguz.cocktailapp.ui.feature.cocktail_detail.CocktailDetailFragment"
+        android:label="fragment_cocktail_detail"
+        tools:layout="@layout/fragment_cocktail_detail" >
+        <argument
+            android:name="cocktail_id"
+            app:argType="string" />
+    </fragment>
+</navigation>
