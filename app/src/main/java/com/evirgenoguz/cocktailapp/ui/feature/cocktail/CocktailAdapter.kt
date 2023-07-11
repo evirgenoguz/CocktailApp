@@ -19,6 +19,7 @@ class CocktailAdapter() : RecyclerView.Adapter<CocktailAdapter.CocktailViewHolde
 
 
     var onItemClick: ((Cocktail) -> Unit)? = null
+    var onFavoriteClick: ((Cocktail) -> Unit)? = null
     private var cocktailList = listOf<Cocktail>()
 
     fun setCocktailList(cocktailList: List<Cocktail>?){
@@ -38,6 +39,9 @@ class CocktailAdapter() : RecyclerView.Adapter<CocktailAdapter.CocktailViewHolde
 
             itemView.setOnClickListener {
                 onItemClick!!.invoke(cocktail)
+            }
+            binding.floatActionButtonFavorite.setOnClickListener {
+                onFavoriteClick!!.invoke(cocktail)
             }
         }
     }

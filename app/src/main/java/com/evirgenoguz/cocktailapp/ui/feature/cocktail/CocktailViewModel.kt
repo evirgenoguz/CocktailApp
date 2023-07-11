@@ -14,23 +14,26 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CocktailViewModel @Inject constructor(
-    private val cocktailRepository: CocktailRepository
-): BaseViewModel() {
+    private val cocktailRepository: CocktailRepository,
+) : BaseViewModel() {
 
     private val _cocktails = MutableLiveData<NetworkResult<CocktailList>>()
     val cocktails: LiveData<NetworkResult<CocktailList>> = _cocktails
+
 
     init {
         getCocktailsByCategory()
     }
 
-    private fun getCocktailsByCategory(){
+    private fun getCocktailsByCategory() {
         viewModelScope.launch {
             _cocktails.postValue(NetworkResult.Loading)
             val result = cocktailRepository.getCocktailsByCategory()
             _cocktails.postValue(result)
         }
     }
+
+
 
 
 }

@@ -8,7 +8,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
-import dagger.hilt.components.SingletonComponent
 
 /**
  * @Author: Oguz Evirgen
@@ -25,4 +24,7 @@ object ViewModelModule {
         apiService: CocktailApi,
         networkManager: NetworkManager
     ): CocktailRepository = CocktailRepository(apiService, networkManager)
+
+
+
 }

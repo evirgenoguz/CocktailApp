@@ -27,7 +27,20 @@
             android:layout_marginTop="8dp"
             android:textAlignment="center"
             app:layout_constraintTop_toBottomOf="@id/ivCocktailImage"
+            tools:layout_editor_absoluteX="8dp"
             tools:text="155 Belmont" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatActionButtonFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_favorite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCocktailName" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

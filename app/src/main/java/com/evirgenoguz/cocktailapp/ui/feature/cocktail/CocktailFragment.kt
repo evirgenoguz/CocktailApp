@@ -1,19 +1,13 @@
 package com.evirgenoguz.cocktailapp.ui.feature.cocktail
 
 
-import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.evirgenoguz.cocktailapp.R
 import com.evirgenoguz.cocktailapp.core.BaseFragment
 import com.evirgenoguz.cocktailapp.databinding.FragmentCocktailBinding
 import com.evirgenoguz.cocktailapp.ext.toast
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,8 +25,11 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
         initListeners()
         prepareAdapter()
         observeCocktailLiveData()
-        onCategoryClick()
+        onCocktailClick()
+        onFavoriteClick()
     }
+
+
 
     private fun prepareAdapter() {
         cocktailAdapter = CocktailAdapter()
@@ -60,11 +57,20 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
 
     }
 
-    private fun onCategoryClick() {
+    private fun onCocktailClick() {
         cocktailAdapter.onItemClick = { cocktail ->
             Log.d("CocktailAdapter", cocktail.idDrink)
             findNavController().navigate(CocktailFragmentDirections.actionCocktailFragmentToCocktailDetailFragment(cocktail.idDrink))
         }
     }
+
+    private fun onFavoriteClick() {
+        cocktailAdapter.onFavoriteClick = { cocktail ->
+            Log.d("CocktailAdapter", cocktail.idDrink)
+            //viewModel.upsertCocktail(cocktail)
+        }
+    }
+
+
 
 }
