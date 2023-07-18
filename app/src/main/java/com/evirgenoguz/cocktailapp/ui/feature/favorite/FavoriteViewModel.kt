@@ -9,5 +9,5 @@ import javax.inject.Inject
 class FavoriteViewModel @Inject constructor(
     private val cocktailRepository: CocktailRepository
 ): BaseViewModel() {
-    // TODO: Implement the ViewModel
+
 }

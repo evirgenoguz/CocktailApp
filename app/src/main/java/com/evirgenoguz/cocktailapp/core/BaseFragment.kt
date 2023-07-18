@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.evirgenoguz.cocktailapp.presenter.IndicatorPresenter
+import javax.inject.Inject
 
 /**
  * @Author: OguzEvirgen
@@ -25,6 +27,12 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     // The inflater class for ViewBinding
     abstract val bindingInflater: (LayoutInflater) -> VB
 
+
+    @Inject
+    lateinit var indicatorPresenter: IndicatorPresenter
+
+    protected abstract val viewModel: BaseViewModel
+
     // The function to handle ui setup
     abstract fun setupUi()
 
@@ -35,16 +43,31 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     ): View {
         _binding = bindingInflater.invoke(layoutInflater)
         return binding.root
+
     }
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        connectViewModel(viewModel)
         setupUi()
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    open fun <VM : BaseViewModel> connectViewModel(vararg viewModels: VM) {
+        viewModels.forEach { viewModel ->
+            viewModel.indicator.observe(viewLifecycleOwner) { isLoading ->
+                if (isLoading) {
+                    indicatorPresenter.show()
+                } else {
+                    indicatorPresenter.hide()
+                }
+            }
+        }
     }
 
 }
