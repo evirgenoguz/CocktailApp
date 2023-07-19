@@ -23,16 +23,18 @@ class CocktailRepository(
     suspend fun getCocktailsByCategory(): NetworkResult<Flow<CocktailList>> {
         return networkManager.makeRequest {
             flow {
-                delay(5000)
+                delay(1000)
                 emit(apiService.getCocktailsByCategory("Cocktail"))
-
             }
         }
     }
 
-    suspend fun getCocktailDetailByCategoryId(id: String): NetworkResult<CocktailDetailList> {
+    suspend fun getCocktailDetailByCategoryId(id: String): NetworkResult<Flow<CocktailDetailList>> {
         return networkManager.makeRequest {
-            apiService.getCocktailDetailById(id)
+            flow {
+                delay(1000)
+                emit(apiService.getCocktailDetailById(id))
+            }
         }
     }
 
