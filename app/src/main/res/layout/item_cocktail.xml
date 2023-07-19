@@ -2,44 +2,48 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="?attr/materialCardViewElevatedStyle"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp">
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/ivCocktailImage"
-            android:layout_width="wrap_content"
+            android:id="@+id/imageViewCocktail"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerInside"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toStartOf="@+id/fabAddFavorite"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/tvCocktailName"
+            android:id="@+id/textViewCocktailName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:layout_marginTop="8dp"
+            android:text="Deneme"
             android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/ivCocktailImage"
-            tools:layout_editor_absoluteX="8dp"
-            tools:text="155 Belmont" />
-
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/fabAddFavorite"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCocktail"
+            app:layout_constraintTop_toBottomOf="@id/imageViewCocktail" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatActionButtonFavorite"
+            android:id="@+id/fabAddFavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:src="@drawable/ic_favorite"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:fabSize="mini"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCocktailName" />
+            app:layout_constraintBottom_toBottomOf="@id/imageViewCocktail" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

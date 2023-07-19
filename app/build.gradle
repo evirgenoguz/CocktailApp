@@ -98,4 +98,8 @@ dependencies {
     def lottie_version = "3.4.0"
     //Lottie animation
     implementation "com.airbnb.android:lottie:$lottie_version"
+
+    def material_version = "1.9.0"
+    // Material Design
+    implementation 'com.google.android.material:material:<version>'
 }

@@ -33,14 +33,14 @@ class CocktailAdapter() : RecyclerView.Adapter<CocktailAdapter.CocktailViewHolde
         fun bind(cocktail: Cocktail) {
             Glide.with(binding.root.context)
                 .load(cocktail.strDrinkThumb)
-                .into(binding.ivCocktailImage)
+                .into(binding.imageViewCocktail)
 
-            binding.tvCocktailName.text = cocktail.strDrink
+            binding.textViewCocktailName.text = cocktail.strDrink
 
             itemView.setOnClickListener {
                 onItemClick!!.invoke(cocktail)
             }
-            binding.floatActionButtonFavorite.setOnClickListener {
+            binding.fabAddFavorite.setOnClickListener {
                 onFavoriteClick!!.invoke(cocktail)
             }
         }
