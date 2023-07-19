@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.evirgenoguz.cocktailapp.core.BaseFragment
+import com.evirgenoguz.cocktailapp.core.BaseViewModel
 import com.evirgenoguz.cocktailapp.databinding.FragmentCocktailBinding
 import com.evirgenoguz.cocktailapp.ext.toast
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,7 +17,7 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
     override val bindingInflater: (inflater: LayoutInflater) -> FragmentCocktailBinding
         get() = FragmentCocktailBinding::inflate
 
-    private val viewModel by viewModels<CocktailViewModel>()
+    override val viewModel: CocktailViewModel by viewModels()
 
     private lateinit var cocktailAdapter: CocktailAdapter
 

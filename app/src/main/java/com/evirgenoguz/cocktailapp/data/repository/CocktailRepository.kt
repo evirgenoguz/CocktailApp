@@ -6,6 +6,9 @@ import com.evirgenoguz.cocktailapp.data.api.CocktailApi
 import com.evirgenoguz.cocktailapp.data.model.response.Cocktail
 import com.evirgenoguz.cocktailapp.data.model.response.CocktailDetailList
 import com.evirgenoguz.cocktailapp.data.model.response.CocktailList
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 /**
  * @Author: OguzEvirgen
@@ -17,15 +20,21 @@ class CocktailRepository(
     private val networkManager: NetworkManager
 ) {
 
-    suspend fun getCocktailsByCategory(): NetworkResult<CocktailList> {
+    suspend fun getCocktailsByCategory(): NetworkResult<Flow<CocktailList>> {
         return networkManager.makeRequest {
-            apiService.getCocktailsByCategory("Cocktail")
+            flow {
+                delay(1000)
+                emit(apiService.getCocktailsByCategory("Cocktail"))
+            }
         }
     }
 
-    suspend fun getCocktailDetailByCategoryId(id: String): NetworkResult<CocktailDetailList> {
+    suspend fun getCocktailDetailByCategoryId(id: String): NetworkResult<Flow<CocktailDetailList>> {
         return networkManager.makeRequest {
-            apiService.getCocktailDetailById(id)
+            flow {
+                delay(1000)
+                emit(apiService.getCocktailDetailById(id))
+            }
         }
     }
 

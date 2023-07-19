@@ -14,7 +14,7 @@ class CocktailDetailFragment : BaseFragment<FragmentCocktailDetailBinding>() {
     override val bindingInflater: (LayoutInflater) -> FragmentCocktailDetailBinding
         get() = FragmentCocktailDetailBinding::inflate
 
-    private val viewModel by viewModels<CocktailDetailViewModel>()
+    override val viewModel by viewModels<CocktailDetailViewModel>()
 
     private val args: CocktailDetailFragmentArgs by navArgs()
 
