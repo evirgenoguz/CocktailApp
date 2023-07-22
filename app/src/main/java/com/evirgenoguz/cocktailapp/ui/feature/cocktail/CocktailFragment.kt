@@ -41,14 +41,8 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
 
     private fun observeCocktailLiveData() {
         viewModel.cocktails.observe(viewLifecycleOwner) { result ->
-            result.onLoading {
-                // TODO Create a loading animation for here
-                toast("Loading animation")
-            }.onSuccess { cocktailList ->
+            result.onSuccess { cocktailList ->
                 cocktailAdapter.setCocktailList(cocktailList.cocktailList)
-            }.onError { error ->
-                // TODO create a dialog fragment for showing error messages
-                toast(error.message)
             }
         }
 

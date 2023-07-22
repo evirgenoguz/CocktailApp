@@ -6,7 +6,6 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.evirgenoguz.cocktailapp.core.BaseFragment
 import com.evirgenoguz.cocktailapp.databinding.FragmentCocktailDetailBinding
-import com.evirgenoguz.cocktailapp.ext.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,21 +26,13 @@ class CocktailDetailFragment : BaseFragment<FragmentCocktailDetailBinding>() {
 
     private fun observeCocktailLiveData() {
         viewModel.cocktailDetail.observe(viewLifecycleOwner) { result ->
-            result.onLoading {
-                // TODO Create a loading animation for here
-                toast("Loading animation")
-            }.onSuccess { cocktailList ->
-
+            result.onSuccess { cocktailList ->
                 Glide.with(binding.root.context)
                     .load(cocktailList.cocktailDetailList?.get(0)?.strDrinkThumb)
                     .into(binding.imageViewCocktailImage)
 
                 binding.textViewCocktailName.text = cocktailList.cocktailDetailList?.get(0)?.strDrink ?: ""
                 binding.textViewInstructions.text = cocktailList.cocktailDetailList?.get(0)?.strInstructions ?: ""
-
-            }.onError { error ->
-                // TODO create a dialog fragment for showing error messages
-                toast(error.message)
             }
         }
 
