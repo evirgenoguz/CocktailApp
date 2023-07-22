@@ -2,6 +2,7 @@ package com.evirgenoguz.cocktailapp.data.repository
 
 import com.evirgenoguz.cocktailapp.data.NetworkManager
 import com.evirgenoguz.cocktailapp.data.NetworkResult
+import com.evirgenoguz.cocktailapp.data.ServerErrorModel
 import com.evirgenoguz.cocktailapp.data.api.CocktailApi
 import com.evirgenoguz.cocktailapp.data.model.response.Cocktail
 import com.evirgenoguz.cocktailapp.data.model.response.CocktailDetailList
@@ -20,13 +21,15 @@ class CocktailRepository(
     private val networkManager: NetworkManager
 ) {
 
-    suspend fun getCocktailsByCategory(): NetworkResult<Flow<CocktailList>> {
-        return networkManager.makeRequest {
-            flow {
-                delay(1000)
-                emit(apiService.getCocktailsByCategory("Cocktail"))
-            }
+    suspend fun getCocktailsByCategory(): Flow<NetworkResult<CocktailList>> = flow {
+        emit(NetworkResult.Loading(true))
+        val response = networkManager.makeRequest {
+            apiService.getCocktailsByCategory("Cocktail")
         }
+        delay(750)
+        emit(response)
+        emit(NetworkResult.Loading(false))
+
     }
 
     suspend fun getCocktailDetailByCategoryId(id: String): NetworkResult<Flow<CocktailDetailList>> {

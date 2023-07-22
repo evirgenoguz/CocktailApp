@@ -31,25 +31,16 @@ class CocktailViewModel @Inject constructor(
 
     private fun getCocktailsByCategory() {
         viewModelScope.launch {
-            cocktailRepository.getCocktailsByCategory().onSuccess {
-                it.onStart {
-                    Log.d("CocktailViewModel", "onStart")
-                    showIndicator()
+            cocktailRepository.getCocktailsByCategory().collect{ result ->
+                result.onSuccess {
+                    _cocktails.postValue(NetworkResult.Success(it))
+                }.onError {
+                    showErrorDialog(it)
+                }.onLoading {
+                    if (it) showIndicator()
+                    else hideIndicator()
                 }
-                    .onCompletion {
-                        Log.d("CocktailViewModel", "onCompletion")
-                        hideIndicator()
-                    }
-                    .collect { cocktailList ->
-                        _cocktails.postValue(NetworkResult.Success(cocktailList))
-                    }
             }
-                .onError {
-                    Log.d("CocktailViewModel", it.message)
-                }
-//            _cocktails.postValue(NetworkResult.Loading)
-//            val result = cocktailRepository.getCocktailsByCategory()
-//            _cocktails.postValue(result)
         }
     }
 

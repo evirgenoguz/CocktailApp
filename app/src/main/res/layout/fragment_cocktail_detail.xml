@@ -10,31 +10,63 @@
         android:id="@+id/imageViewCocktailImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_smaller"
         android:scaleType="centerInside"
-        android:layout_margin="8dp"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
+
+    <TextView
+        android:id="@+id/textViewCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_smaller"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:text="@string/category"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewCocktailImage" />
+
+    <TextView
+        android:id="@+id/textViewGlass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:layout_marginEnd="@dimen/spacing_smaller"
+        android:text="@string/glass"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewCocktailImage" />
 
     <TextView
         android:id="@+id/textViewCocktailName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="TEST"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:textSize="@dimen/font_larger"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="12dp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/imageViewCocktailImage" />
+        app:layout_constraintTop_toBottomOf="@id/imageViewCocktailImage"
+        tools:text="Cocktail Name" />
+
+    <TextView
+        android:id="@+id/textViewIngredientList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_smaller"
+        app:layout_constraintTop_toBottomOf="@id/textViewCocktailName"
+        tools:text="strIngredient: " />
 
     <TextView
         android:id="@+id/textViewInstructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        tools:text="DENEMENDEMENDENDDNEFNERFEFDN"
+        android:layout_margin="@dimen/spacing_smaller"
+        android:layout_marginTop="@dimen/spacing_small"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@id/textViewCocktailName"/>
-
+        app:layout_constraintTop_toBottomOf="@id/textViewIngredientList"
+        tools:text="strInstructions" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

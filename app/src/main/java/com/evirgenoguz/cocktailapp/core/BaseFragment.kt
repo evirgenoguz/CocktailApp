@@ -4,9 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.evirgenoguz.cocktailapp.R
+import com.evirgenoguz.cocktailapp.data.ServerErrorModel
+import com.evirgenoguz.cocktailapp.presenter.DefaultIndicatorPresenterImpl
 import com.evirgenoguz.cocktailapp.presenter.IndicatorPresenter
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import javax.inject.Inject
 
 /**
@@ -67,7 +72,12 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
                     indicatorPresenter.hide()
                 }
             }
+            viewModel.showErrorDialog.observe(viewLifecycleOwner){
+                indicatorPresenter.showErrorDialog(it)
+            }
         }
     }
+
+
 
 }

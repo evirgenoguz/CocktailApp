@@ -4,4 +4,6 @@
     <string name="general_error_message">Error!</string>
     <string name="cocktail">Cocktail</string>
     <string name="favorites">Favorites</string>
+    <string name="category">Category:</string>
+    <string name="glass">Glass:</string>
 </resources>

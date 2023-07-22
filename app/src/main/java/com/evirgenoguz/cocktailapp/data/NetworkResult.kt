@@ -8,7 +8,7 @@ package com.evirgenoguz.cocktailapp.data
 sealed class NetworkResult<out T> {
     data class Success<out T>(val body: T) : NetworkResult<T>()
 
-    object Loading : NetworkResult<Nothing>()
+    data class Loading(val isLoading: Boolean) : NetworkResult<Nothing>()
 
     data class Error(val error: ServerErrorModel) : NetworkResult<Nothing>()
 
@@ -31,11 +31,11 @@ sealed class NetworkResult<out T> {
     }
 
     inline fun onLoading(
-        block: () -> Unit
+        block: (isLoading: Boolean) -> Unit
     ): NetworkResult<T> {
         return this.also {
             if (it is Loading)
-                block()
+                block(it.isLoading)
         }
     }
 }

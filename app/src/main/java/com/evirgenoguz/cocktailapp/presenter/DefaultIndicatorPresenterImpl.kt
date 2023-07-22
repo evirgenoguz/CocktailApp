@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import com.evirgenoguz.cocktailapp.R
+import com.evirgenoguz.cocktailapp.data.ServerErrorModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /**
@@ -19,18 +20,19 @@ class DefaultIndicatorPresenterImpl constructor(
 ) : IndicatorPresenter {
 
     private var loadingDialog: androidx.appcompat.app.AlertDialog? = null
+    private var errorDialog: androidx.appcompat.app.AlertDialog? = null
 
     init {
         initLoadingDialog()
+        initErrorDialog()
     }
-
 
 
     override fun show() {
         if (loadingDialog == null || isActivityRunning().not()) return
 
         loadingDialog?.let {
-            if (it.isShowing.not()){
+            if (it.isShowing.not()) {
                 it.show()
             }
         }
@@ -41,10 +43,25 @@ class DefaultIndicatorPresenterImpl constructor(
         if (loadingDialog == null || isActivityRunning().not()) return
 
         loadingDialog?.let {
-            if (it.isShowing){
+            if (it.isShowing) {
                 it.dismiss()
             }
         }
+    }
+
+    override fun showErrorDialog(serverError: ServerErrorModel) {
+        if (errorDialog == null || isActivityRunning().not()) return
+
+        errorDialog?.let {
+            it.setMessage(serverError.message)
+            it.show()
+        }
+    }
+
+    override fun hideErrorDialog(serverError: ServerErrorModel) {
+        if (errorDialog == null || isActivityRunning().not()) return
+
+        errorDialog?.dismiss()
     }
 
 
@@ -65,6 +82,23 @@ class DefaultIndicatorPresenterImpl constructor(
         )
     }
 
+
+    private fun initErrorDialog() {
+        val alertDialogBuilder = MaterialAlertDialogBuilder(context)
+        alertDialogBuilder.apply {
+            setTitle("Error")
+            setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+        }
+        errorDialog = alertDialogBuilder.create()
+//        errorDialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        (context as AppCompatActivity).lifecycle.addObserver(
+            DialogDismissLifecycleObserver(
+                errorDialog
+            )
+        )
+    }
 
     class DialogDismissLifecycleObserver(
         private var dialog: AppCompatDialog?
