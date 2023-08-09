@@ -31,7 +31,6 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
     }
 
 
-
     private fun prepareAdapter() {
         cocktailAdapter = CocktailAdapter()
         binding.rvCocktails.apply {
@@ -40,12 +39,9 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
     }
 
     private fun observeCocktailLiveData() {
-        viewModel.cocktails.observe(viewLifecycleOwner) { result ->
-            result.onSuccess { cocktailList ->
-                cocktailAdapter.setCocktailList(cocktailList.cocktailList)
-            }
+        viewModel.cocktails.observe(viewLifecycleOwner) { cocktailList ->
+            cocktailAdapter.setCocktailList(cocktailList.cocktailList)
         }
-
     }
 
     private fun initListeners() {
@@ -55,7 +51,11 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
     private fun onCocktailClick() {
         cocktailAdapter.onItemClick = { cocktail ->
             Log.d("CocktailAdapter", cocktail.idDrink)
-            findNavController().navigate(CocktailFragmentDirections.actionCocktailFragmentToCocktailDetailFragment(cocktail.idDrink))
+            findNavController().navigate(
+                CocktailFragmentDirections.actionCocktailFragmentToCocktailDetailFragment(
+                    cocktail.idDrink
+                )
+            )
         }
     }
 
@@ -65,7 +65,6 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
             //viewModel.upsertCocktail(cocktail)
         }
     }
-
 
 
 }

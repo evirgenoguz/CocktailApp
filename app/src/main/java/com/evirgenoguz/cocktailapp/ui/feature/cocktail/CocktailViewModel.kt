@@ -21,8 +21,8 @@ class CocktailViewModel @Inject constructor(
     private val cocktailRepository: CocktailRepository,
 ) : BaseViewModel() {
 
-    private val _cocktails = MutableLiveData<NetworkResult<CocktailList>>()
-    val cocktails: LiveData<NetworkResult<CocktailList>> = _cocktails
+    private val _cocktails = MutableLiveData<CocktailList>()
+    val cocktails: LiveData<CocktailList> = _cocktails
 
 
     init {
@@ -33,7 +33,7 @@ class CocktailViewModel @Inject constructor(
         viewModelScope.launch {
             cocktailRepository.getCocktailsByCategory().collect{ result ->
                 result.onSuccess {
-                    _cocktails.postValue(NetworkResult.Success(it))
+                    _cocktails.postValue(it)
                 }.onError {
                     showErrorDialog(it)
                 }.onLoading {

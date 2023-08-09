@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.evirgenoguz.cocktailapp.core.BaseViewModel
 import com.evirgenoguz.cocktailapp.data.NetworkResult
 import com.evirgenoguz.cocktailapp.data.model.response.CocktailDetailList
+import com.evirgenoguz.cocktailapp.data.model.ui.CocktailDetailUiModel
 import com.evirgenoguz.cocktailapp.data.repository.CocktailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,14 +17,14 @@ class CocktailDetailViewModel @Inject constructor(
     private val cocktailRepository: CocktailRepository
 ) : BaseViewModel() {
 
-    private val _cocktailDetail = MutableLiveData<NetworkResult<CocktailDetailList>>()
-    val cocktailDetail: LiveData<NetworkResult<CocktailDetailList>> = _cocktailDetail
+    private val _cocktailDetail = MutableLiveData<CocktailDetailUiModel>()
+    val cocktailDetail: LiveData<CocktailDetailUiModel> = _cocktailDetail
 
     fun getCocktailDetailById(id: String) {
         viewModelScope.launch {
             cocktailRepository.getCocktailDetailByCategoryId(id).collect {result ->
                 result.onSuccess {
-                    _cocktailDetail.postValue(NetworkResult.Success(it))
+                    _cocktailDetail.postValue(it)
                 }
                 result.onLoading {
                     if (it) showIndicator()

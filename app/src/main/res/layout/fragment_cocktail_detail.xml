@@ -6,13 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.feature.cocktail_detail.CocktailDetailFragment">
 
+    <TextView
+        android:id="@+id/textViewCocktailName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:textSize="@dimen/font_huge"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/imageViewCocktailImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Cocktail Name" />
+
+
     <ImageView
         android:id="@+id/imageViewCocktailImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_smaller"
         android:scaleType="centerInside"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/spacing_normal"
+        app:layout_constraintTop_toBottomOf="@id/textViewCocktailName"
         tools:srcCompat="@tools:sample/avatars" />
 
 
@@ -23,6 +37,7 @@
         android:layout_marginStart="@dimen/spacing_smaller"
         android:layout_marginTop="@dimen/spacing_tiny"
         android:text="@string/category"
+        android:textSize="@dimen/font_large"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageViewCocktailImage" />
@@ -34,39 +49,53 @@
         android:layout_marginTop="@dimen/spacing_tiny"
         android:layout_marginEnd="@dimen/spacing_smaller"
         android:text="@string/glass"
+        android:textSize="@dimen/font_large"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageViewCocktailImage" />
 
-    <TextView
-        android:id="@+id/textViewCocktailName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:textSize="@dimen/font_larger"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageViewCocktailImage"
-        tools:text="Cocktail Name" />
+
 
     <TextView
         android:id="@+id/textViewIngredientList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_smaller"
-        app:layout_constraintTop_toBottomOf="@id/textViewCocktailName"
+        android:textAlignment="center"
+        android:textSize="@dimen/font_normal"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@id/textViewCategory"
         tools:text="strIngredient: " />
 
-    <TextView
-        android:id="@+id/textViewInstructions"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_smaller"
         android:layout_marginTop="@dimen/spacing_small"
-        android:textAlignment="center"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         app:layout_constraintTop_toBottomOf="@id/textViewIngredientList"
-        tools:text="strInstructions" />
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/textViewInstructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="@dimen/font_large"
+            android:textStyle="bold"
+            tools:text="strInstructions" />
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageViewYoutube"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_normal"
+        android:src="@drawable/ic_youtube"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
