@@ -10,7 +10,6 @@ import com.evirgenoguz.cocktailapp.data.ServerErrorModel
 import com.evirgenoguz.cocktailapp.data.model.response.CocktailDetailList
 import com.evirgenoguz.cocktailapp.data.repository.CocktailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch

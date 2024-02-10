@@ -26,10 +26,10 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
         initListeners()
         prepareAdapter()
         observeCocktailLiveData()
+        observeNetworkLiveData()
         onCocktailClick()
         onFavoriteClick()
     }
-
 
 
     private fun prepareAdapter() {
@@ -51,7 +51,16 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
                 toast(error.message)
             }
         }
+    }
 
+    private fun observeNetworkLiveData() {
+        viewModel.networkLiveData.observe(viewLifecycleOwner){
+            if (it){
+                viewModel.getCocktailsByCategory()
+            } else {
+                Log.d("Deneme" ,"Internet Tekrar Yok")
+            }
+        }
     }
 
     private fun initListeners() {
@@ -61,7 +70,11 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
     private fun onCocktailClick() {
         cocktailAdapter.onItemClick = { cocktail ->
             Log.d("CocktailAdapter", cocktail.idDrink)
-            findNavController().navigate(CocktailFragmentDirections.actionCocktailFragmentToCocktailDetailFragment(cocktail.idDrink))
+            findNavController().navigate(
+                CocktailFragmentDirections.actionCocktailFragmentToCocktailDetailFragment(
+                    cocktail.idDrink
+                )
+            )
         }
     }
 
@@ -71,7 +84,4 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
             //viewModel.upsertCocktail(cocktail)
         }
     }
-
-
-
 }
