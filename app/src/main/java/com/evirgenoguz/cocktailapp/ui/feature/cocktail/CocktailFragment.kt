@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.evirgenoguz.cocktailapp.core.BaseFragment
-import com.evirgenoguz.cocktailapp.core.BaseViewModel
 import com.evirgenoguz.cocktailapp.databinding.FragmentCocktailBinding
 import com.evirgenoguz.cocktailapp.ext.toast
 import dagger.hilt.android.AndroidEntryPoint
