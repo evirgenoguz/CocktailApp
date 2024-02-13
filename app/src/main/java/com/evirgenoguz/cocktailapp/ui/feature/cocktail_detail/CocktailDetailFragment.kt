@@ -14,38 +14,38 @@ class CocktailDetailFragment : BaseFragment<FragmentCocktailDetailBinding>() {
     override val bindingInflater: (LayoutInflater) -> FragmentCocktailDetailBinding
         get() = FragmentCocktailDetailBinding::inflate
 
-    override val viewModel by viewModels<CocktailDetailViewModel>()
+//    override val viewModel by viewModels<CocktailDetailViewModel>()
 
     private val args: CocktailDetailFragmentArgs by navArgs()
 
     override fun setupUi() {
-        observeCocktailLiveData()
+//        observeCocktailLiveData()
 
         val cocktailId: String = args.cocktailId
-        viewModel.getCocktailDetailById(cocktailId)
+//        viewModel.getCocktailDetailById(cocktailId)
     }
 
-    private fun observeCocktailLiveData() {
-        viewModel.cocktailDetail.observe(viewLifecycleOwner) { result ->
-            result.onLoading {
-                // TODO Create a loading animation for here
-                toast("Loading animation")
-            }.onSuccess { cocktailList ->
-
-                Glide.with(binding.root.context)
-                    .load(cocktailList.cocktailDetailList?.get(0)?.strDrinkThumb)
-                    .into(binding.imageViewCocktailImage)
-
-                binding.textViewCocktailName.text = cocktailList.cocktailDetailList?.get(0)?.strDrink ?: ""
-                binding.textViewInstructions.text = cocktailList.cocktailDetailList?.get(0)?.strInstructions ?: ""
-
-            }.onError { error ->
-                // TODO create a dialog fragment for showing error messages
-                toast(error.message)
-            }
-        }
-
-    }
+//    private fun observeCocktailLiveData() {
+//        viewModel.cocktailDetail.observe(viewLifecycleOwner) { result ->
+//            result.onLoading {
+//                // TODO Create a loading animation for here
+//                toast("Loading animation")
+//            }.onSuccess { cocktailList ->
+//
+//                Glide.with(binding.root.context)
+//                    .load(cocktailList.cocktailDetailList?.get(0)?.strDrinkThumb)
+//                    .into(binding.imageViewCocktailImage)
+//
+//                binding.textViewCocktailName.text = cocktailList.cocktailDetailList?.get(0)?.strDrink ?: ""
+//                binding.textViewInstructions.text = cocktailList.cocktailDetailList?.get(0)?.strInstructions ?: ""
+//
+//            }.onError { error ->
+//                // TODO create a dialog fragment for showing error messages
+//                toast(error.message)
+//            }
+//        }
+//
+//    }
 
 
 

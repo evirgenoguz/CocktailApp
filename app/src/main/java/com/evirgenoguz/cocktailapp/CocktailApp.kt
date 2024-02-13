@@ -8,5 +8,4 @@ import dagger.hilt.android.HiltAndroidApp
  * @Date: 2.07.2023
  */
 @HiltAndroidApp
-class CocktailApp : Application() {
-}
+class CocktailApp : Application()

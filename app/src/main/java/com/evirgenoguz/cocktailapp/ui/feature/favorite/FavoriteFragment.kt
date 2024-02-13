@@ -13,7 +13,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     override val bindingInflater: (LayoutInflater) -> FragmentFavoriteBinding
         get() = FragmentFavoriteBinding::inflate
 
-    override val viewModel: FavoriteViewModel by viewModels()
+//    override val viewModel: FavoriteViewModel by viewModels()
 
     override fun setupUi() {
 

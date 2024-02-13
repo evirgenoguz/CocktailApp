@@ -28,7 +28,6 @@ object ViewModelModule {
         networkManager: NetworkManager
     ): CocktailRepository = CocktailRepository(apiService, networkManager)
 
-
     @Provides
     @ViewModelScoped
     fun provideNetworkUtil(

@@ -31,7 +31,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     @Inject
     lateinit var indicatorPresenter: IndicatorPresenter
 
-    protected abstract val viewModel: BaseViewModel
+//    protected abstract val viewModel: BaseViewModel
 
     // The function to handle ui setup
     abstract fun setupUi()
@@ -48,7 +48,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        connectViewModel(viewModel)
+//        connectViewModel(viewModel)
         setupUi()
 
     }

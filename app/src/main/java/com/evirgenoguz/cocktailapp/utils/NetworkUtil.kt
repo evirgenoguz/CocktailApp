@@ -10,7 +10,7 @@ import javax.inject.Inject
  * @Date: 10.02.2024
  */
 
-class NetworkUtil @Inject constructor(context: Context) {
+class NetworkUtil(context: Context) {
 
     val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

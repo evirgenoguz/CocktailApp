@@ -16,8 +16,9 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
     override val bindingInflater: (inflater: LayoutInflater) -> FragmentCocktailBinding
         get() = FragmentCocktailBinding::inflate
 
-    override val viewModel: CocktailViewModel by viewModels()
+//    override val viewModel: CocktailViewModel by viewModels()
 
+    private val  viewModel: CocktailViewModel by viewModels()
     private lateinit var cocktailAdapter: CocktailAdapter
 
 
