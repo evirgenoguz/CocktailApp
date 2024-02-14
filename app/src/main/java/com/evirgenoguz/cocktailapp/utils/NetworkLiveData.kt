@@ -1,5 +1,6 @@
 package com.evirgenoguz.cocktailapp.utils
 
+import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
@@ -11,7 +12,10 @@ import androidx.lifecycle.LiveData
  * @Date: 10.02.2024
  */
 
-class NetworkLiveData(private val networkUtil: NetworkUtil) : LiveData<Boolean>() {
+class NetworkLiveData (context: Context) : LiveData<Boolean>() {
+
+    private val connectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     private val networkCallback = object : ConnectivityManager.NetworkCallback() {
         override fun onAvailable(network: Network) {
@@ -29,11 +33,11 @@ class NetworkLiveData(private val networkUtil: NetworkUtil) : LiveData<Boolean>(
             .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
             .build()
 
-        networkUtil.connectivityManager.registerNetworkCallback(networkRequest, networkCallback)
+        connectivityManager.registerNetworkCallback(networkRequest, networkCallback)
     }
 
     override fun onInactive() {
         super.onInactive()
-        networkUtil.connectivityManager.unregisterNetworkCallback(networkCallback)
+        connectivityManager.unregisterNetworkCallback(networkCallback)
     }
 }

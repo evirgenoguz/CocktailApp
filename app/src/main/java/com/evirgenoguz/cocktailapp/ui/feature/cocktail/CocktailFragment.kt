@@ -24,18 +24,23 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
     override fun setupUi() {
         initListeners()
         prepareAdapter()
+        checkNetworkStateAndRequest {
+            initialRequests()
+        }
         observeCocktailLiveData()
-        observeNetworkLiveData()
         onCocktailClick()
         onFavoriteClick()
     }
-
 
     private fun prepareAdapter() {
         cocktailAdapter = CocktailAdapter()
         binding.rvCocktails.apply {
             adapter = cocktailAdapter
         }
+    }
+
+    private fun initialRequests() {
+        viewModel.getCocktailsByCategory()
     }
 
     private fun observeCocktailLiveData() {
@@ -48,16 +53,6 @@ class CocktailFragment : BaseFragment<FragmentCocktailBinding>() {
             }.onError { error ->
                 // TODO create a dialog fragment for showing error messages
                 toast(error.message)
-            }
-        }
-    }
-
-    private fun observeNetworkLiveData() {
-        viewModel.networkLiveData.observe(viewLifecycleOwner){
-            if (it){
-                viewModel.getCocktailsByCategory()
-            } else {
-                Log.d("Deneme" ,"Internet Tekrar Yok")
             }
         }
     }
