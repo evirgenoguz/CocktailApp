@@ -12,7 +12,7 @@ import androidx.lifecycle.LiveData
  * @Date: 10.02.2024
  */
 
-class NetworkLiveData (context: Context) : LiveData<Boolean>() {
+class NetworkLiveData (context: Context) : LiveData<Boolean>(false) {
 
     private val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

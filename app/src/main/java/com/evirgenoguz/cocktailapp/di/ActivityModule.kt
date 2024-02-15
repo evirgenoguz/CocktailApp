@@ -3,6 +3,8 @@ package com.evirgenoguz.cocktailapp.di
 import android.content.Context
 import com.evirgenoguz.cocktailapp.presenter.DefaultIndicatorPresenterImpl
 import com.evirgenoguz.cocktailapp.presenter.IndicatorPresenter
+import com.evirgenoguz.cocktailapp.presenter.NoInternetDialogPresenter
+import com.evirgenoguz.cocktailapp.presenter.NoInternetDialogPresenterImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,4 +26,8 @@ object ActivityModule {
     fun provideIndicatorPresenter(@ActivityContext context: Context): IndicatorPresenter =
         DefaultIndicatorPresenterImpl(context)
 
+    @Provides
+    @ActivityScoped
+    fun provideNoInternetDialogPresenter(@ActivityContext context: Context): NoInternetDialogPresenter =
+        NoInternetDialogPresenterImpl(context)
 }

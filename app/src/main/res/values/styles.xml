@@ -5,4 +5,9 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+    <style name="StyleNoInternetDialog" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="android:background">@color/white</item>
+        <item name="cardCornerRadius">20dp</item>
+    </style>
+
 </resources>

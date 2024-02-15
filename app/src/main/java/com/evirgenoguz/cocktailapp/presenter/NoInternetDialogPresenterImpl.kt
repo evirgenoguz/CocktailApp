@@ -9,25 +9,20 @@ import androidx.lifecycle.LifecycleOwner
 import com.evirgenoguz.cocktailapp.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-/**
- * @Author: Oguz Evirgen
- * @Date: 18.07.2023
- */
-
-class DefaultIndicatorPresenterImpl(
+class NoInternetDialogPresenterImpl(
     private val context: Context
-) : IndicatorPresenter {
+) : NoInternetDialogPresenter {
 
-    private var loadingDialog: androidx.appcompat.app.AlertDialog? = null
+    private var noInternetDialog: androidx.appcompat.app.AlertDialog? = null
 
     init {
-        initLoadingDialog()
+        initNoInternetDialog()
     }
 
     override fun show() {
-        if (loadingDialog == null || isActivityRunning().not()) return
+        if (noInternetDialog == null || isActivityRunning().not()) return
 
-        loadingDialog?.let {
+        noInternetDialog?.let {
             if (it.isShowing.not()) {
                 it.show()
             }
@@ -35,9 +30,9 @@ class DefaultIndicatorPresenterImpl(
     }
 
     override fun hide() {
-        if (loadingDialog == null || isActivityRunning().not()) return
+        if (noInternetDialog == null || isActivityRunning().not()) return
 
-        loadingDialog?.let {
+        noInternetDialog?.let {
             if (it.isShowing) {
                 it.dismiss()
             }
@@ -47,15 +42,14 @@ class DefaultIndicatorPresenterImpl(
     private fun isActivityRunning(): Boolean =
         (context as AppCompatActivity).lifecycle.currentState != Lifecycle.State.DESTROYED
 
-    private fun initLoadingDialog() {
-        val builder = MaterialAlertDialogBuilder(context, R.style.StyleLoadingDialog)
+    private fun initNoInternetDialog() {
+        val builder = MaterialAlertDialogBuilder(context, R.style.StyleNoInternetDialog)
         builder.setCancelable(false)
-        builder.setView(R.layout.dialog_view_progress)
-        loadingDialog = builder.create()
-        loadingDialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        builder.setView(R.layout.dialog_no_internet)
+        noInternetDialog = builder.create()
         (context as AppCompatActivity).lifecycle.addObserver(
             DialogDismissLifecycleObserver(
-                loadingDialog
+                noInternetDialog
             )
         )
     }

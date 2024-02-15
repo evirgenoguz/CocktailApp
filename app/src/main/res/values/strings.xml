@@ -4,4 +4,5 @@
     <string name="general_error_message">Error!</string>
     <string name="cocktail">Cocktail</string>
     <string name="favorites">Favorites</string>
+    <string name="no_internet_dialog_text">Don\'t have an internet connection check your settings!</string>
 </resources>

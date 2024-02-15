@@ -1,13 +1,13 @@
 package com.evirgenoguz.cocktailapp.core
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.evirgenoguz.cocktailapp.presenter.IndicatorPresenter
+import com.evirgenoguz.cocktailapp.presenter.NoInternetDialogPresenter
 import com.evirgenoguz.cocktailapp.utils.NetworkLiveData
 import javax.inject.Inject
 
@@ -29,9 +29,11 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     // The inflater class for ViewBinding
     abstract val bindingInflater: (LayoutInflater) -> VB
 
-
     @Inject
     lateinit var indicatorPresenter: IndicatorPresenter
+
+    @Inject
+    lateinit var noInternetDialog: NoInternetDialogPresenter
 
     protected abstract val viewModel: BaseViewModel
 
@@ -54,13 +56,17 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         setupUi()
     }
 
+    /**
+     * @param initialRequests makes requests to be made when there is an internet connection.
+     * if the user don't have an internet connection the dialog pop-up and warn the user.
+     */
     open fun checkNetworkStateAndRequest(initialRequests: () -> Unit) {
         NetworkLiveData(requireContext()).observe(viewLifecycleOwner) {
             if (it){
+                noInternetDialog.hide()
                 initialRequests.invoke()
             } else {
-                Log.d("Deneme" ,"Internet Tekrar Yok")
-                //Todo show a dialog that warn you dont have an internet connection
+                noInternetDialog.show()
             }
         }
     }
@@ -81,5 +87,4 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
             }
         }
     }
-
 }
